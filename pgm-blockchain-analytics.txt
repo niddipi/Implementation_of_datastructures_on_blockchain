@@ -1,0 +1,66 @@
+cs5413 Assignment
+
+Blockchain Analytics
+
+This assignment is to perform analytics algorithms such as sorting, searching
+and some application specific algorithms on blockchain-specific (Ethereum) data.
+
+There are 3 different blockchain data files provided, i.e.,
+data on blocks, data on transactions and data on tokens, respectively.
+
+The file of data on blocks includes columns of height (block#), age of block, 
+# of transactions in block, uncles, miner, gas used, gas limit, 
+average gas price, reward, and etc.
+
+The file of data on transactions includes columns of transaction hash code,
+block#, unix times (notice that this is same for all the transactions 
+in same block), from, to, contract address, transaction fee, 
+historical price of ether, and etc.
+
+The file of data on tokens includes columns of transaction hash code, block#, 
+unix time, from, to, and quantity of tokens transmitted, and etc.
+
+Notice that there are certain common columns across different files and which 
+provides a cross-reference point between files during analytics process.
+
+This particular assignment is to perform various mix of analytics 
+with a suite of algorithms of your choice inclusive of sorting algorithms 
+against data across multiple files and columns then identify various 
+information about the data otherwise hidden.
+
+What to do:
+
+Note that the analytics are performed within the scope of the data as provided.
+Display the execution time of each of the following query and results.
+
+1. List up all the blocks by their gas used in an increasing order
+
+2. List up all the blocks by their # transactions in an increasing order
+
+3. List up all the transactions by their transaction fee
+in an increasing order
+
+4. List up all the transactions per block in an increasing order of gas fees
+
+5. List up all the transactions in groups per contract address in an increasing
+order of the block#
+
+6. Search for a particular block# and then display its transactions list
+
+7. Search for a particular transaction hash code for an index within a block#
+and then display 
+transaction fee and block#
+
+8. Identify and list up all the transactions originated 
+from a particular public-key (node) and their total transaction fee
+
+9. Identify and list up all the transactions destined 
+to a particular public-key (node) and their total transaction fee
+
+10. Identify the transaction id in a particular node (contract id) with the 
+largest (smallest) value of tokens
+
+11. Build a graph from the list of "from"s and "to"s and traversa in DFS and BFS
+
+* Note that multiple transactions with tokens transfers are to be added 
+into a single value each direction.
