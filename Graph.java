@@ -18,7 +18,34 @@ public abstract class Graph{
 	public int getEdgesNumber(){
 		return no_edges;
 	}
-	
+	//Adds new vertex to graph
+	public void addnewVertex(){
+		implementNewVertex();
+		no_vertices++;
+	}
 
+	//Abstract method for implementation of addition of new vertices
+	//thorugh addjacency matrix if dense graph or adjacency list if sparse
+	//graph
+	public void abstrct implementNewVertex(){
+	}	
+	
+	
+	//Adds new Edge to graph
+	public void addnewEdge(){
+		implementNewEdge();
+		no_vertices++;
+	}
+
+	//Abstract method for implementation of addition of new Edge
+	//thorugh addjacency matrix if dense graph or adjacency list if sparse
+	//graph
+	public void abstrct implementNewEdge(){
+	}
+
+	//This abstract function return neighbours
+	//This is abstract because it can be used in
+	//different types of implementation of graphs
+	public abstract List<Integer> getNeighborsofVertex(int V);	
 
 }
