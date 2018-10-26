@@ -27,7 +27,7 @@ public abstract class Graph{
 	//Abstract method for implementation of addition of new vertices
 	//thorugh addjacency matrix if dense graph or adjacency list if sparse
 	//graph
-	public void abstrct implementNewVertex(){
+	public void abstract implementNewVertex(){
 	}	
 	
 	
@@ -40,7 +40,7 @@ public abstract class Graph{
 	//Abstract method for implementation of addition of new Edge
 	//thorugh addjacency matrix if dense graph or adjacency list if sparse
 	//graph
-	public void abstrct implementNewEdge(){
+	public void abstract implementNewEdge(){
 	}
 
 	//This abstract function return neighbours
