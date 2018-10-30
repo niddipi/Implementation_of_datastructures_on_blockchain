@@ -2,6 +2,7 @@
 This class extends the implementation of the
 Graph using adjacency matrices
 ******************************************/
+import java.util.*;
 public class AdjMatrixGraph extends Graph{
 
 private boolean[][] adj_matrix;
@@ -27,3 +28,17 @@ public void implementNewVertex(int a){
 		adj_matrix = temp_adj_matrix;
 	}
 }
+
+public List<Integer> getNeighbors(int v){
+
+                ArrayList<Integer> neighbours = new ArrayList<Integer>();
+		for(int j=0;j<adj_matrix.length;j++){
+
+			if(adj_matrix[v][j] = true){
+
+				neighbours.add(j);
+			}
+		
+		}
+		return neighbours;
+}	
