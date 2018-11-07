@@ -1,0 +1,70 @@
+						Report
+Name : Neelesh Iddipilla
+
+Query1:
+To List up all the blocks by their gas used in an increasing order
+
+Sorting Algorithm used : Quicksort
+Time to execute Query1: 19ms
+
+
+Query2:
+To List up all the blocks by their # transactions in an increasing order
+
+Sorting Algorithm used : Quicksort
+Time to execute Query2: 6ms
+
+Query3:
+To List up all the transactions by their transaction fee in an increasing order
+
+Sorting Algorithm used : Quicksort
+Time to execute Query3: 181ms
+
+Query4:
+To List up all the transactions per block in an increasing order of gas fees
+
+Sorting Algorithm used : Quicksort
+Time to execute Query4: 144ms
+ 
+Query5:
+To List up all the transactions in groups per contract address in an increasing order of the block#
+
+Sorting Algorithm used : Quicksort
+Time to execute Query5: 159ms
+
+Query6:
+To Search for a particular block# and then display its transactions list
+
+Algorithm used :Linear Search
+Time to execute Query6: 3ms
+
+Query7:
+To Search for a particular transaction hash code for an index within a block#
+and then display transaction fee and block#
+
+Algorithm used :Linear Search
+Time to execute Query7: 1ms
+
+Query8:
+To Identify and list up all the transactions originated from a particular public-key (node) and their total transaction fee
+
+Algorithm used :Linear Search
+Time to execute Query8: 5ms
+
+Query9:
+To Identify and list up all the transactions destined to a particular public-key (node) and their total transaction fee.
+
+Algorithm used :Linear Search
+Time to execute Query9: 3ms
+
+Query10:
+To Identify the transaction id in a particular node (contract id) with the
+largest (smallest) value of tokens
+
+Algorithm used :Linear Search
+Time to execute Query10: 1ms
+
+Query11:
+To Build a graph from the list of "from"s and "to"s and traverse in DFS and BFS
+
+Time to execute Query11: 9ms
