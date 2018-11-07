@@ -114,6 +114,7 @@ public class AdjListGraph extends Graph{
 	}
 	private Map<String,String> Parents = new HashMap<>();	
 	private int time =0;
+	private ArrayList<String> topological_sort = new ArrayList<String>();
 	public void DFS_visit(String current_vertex,String RequiredGoal){
 		if(current_vertex.equals(RequiredGoal)){
 			return;
@@ -132,8 +133,7 @@ public class AdjListGraph extends Graph{
 		}
 		time = time + 1;
 		int End_t = time;
-		System.out.println(current_vertex+"-"+End_t);
-			
+		topological_sort.add(current_vertex+"-"+End_t);
 		return;
 	}
 	public void DFS(String RequiredGoal){
@@ -142,8 +142,9 @@ public class AdjListGraph extends Graph{
 			DFS_visit(current_vertex,RequiredGoal);
 		   }
 		}
-
+		int len_tp = topological_sort.size()-1;	
+		for(int i = len_tp;i >= 0;i--){
+			System.out.println(topological_sort.get(i));
+		}
 	}
-
-
 }

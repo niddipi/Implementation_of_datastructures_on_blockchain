@@ -13,13 +13,13 @@ public class Blockchain{
 	private static Map<String,ArrayList<String>> contract_Block = new HashMap<>();	
 	private static Map<String,ArrayList<String>> contract_hash  = new HashMap<>();	
 	private static Map<String,ArrayList<String>> contract_tokens  = new HashMap<>();	
+	private static AdjListGraph G = new AdjListGraph();
 
 	public static void main(String[] args){
 		String csvFile = "transactions.csv";
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = ",";
-		AdjListGraph G = new AdjListGraph();
 		try {
 			br = new BufferedReader(new FileReader(csvFile));
 			line = br.readLine();
@@ -33,7 +33,6 @@ public class Blockchain{
 					int i =0;
 					while(i < transaction.length){
 						record.add(transaction[i]);
-						//System.out.println(transaction[i]);
 						i++;
 					}
 					records.put(transaction[6],record);
@@ -53,22 +52,31 @@ public class Blockchain{
 					contract_Block.get(transaction[4]).add(transaction[1]);
 					contract_hash.get(transaction[4]).add(transaction[6]);
 					tokens = Double.valueOf(transaction[8]).longValue();
-					//System.out.println(tokens);
 					contract_tokens.get(transaction[4]).add(String.valueOf(tokens));
 				}
 			}
-			System.out.println(G.getVerticesNumber());
-			//G.DisplayGraph();
-			//System.out.println("BFS Output");
-			String start_node = "0x2976924b350bcee8263f36d86cebd584d2363c1f";
-			//G.BFS(start_node);
-			//System.out.println("DFS Output");
-			//G.DFS("knknnnlklkmlkmlk");
+			System.out.println("Query 1");
 			Query1();
-			//Query_7("0xf3847b971ac4095f7c45eb31f6e34180cdf8c983e5e9c1ccfc29e06c25ac0e3d");
-			//Query_8("0xa4d6ff84f3fc783f3f7f71177958cff19dd7ffc4");
-			//Query_9("0xa2d7a9432e98f91fffad9158f3183b24a744ab07");
-			 Query_10("0x7b36d8be6f92818dc30f532ae2a67128b4b92b21");
+			System.out.println("Query 2");
+			Query2();
+			System.out.println("Query 3");
+			Query3();
+			System.out.println("Query 4");
+			Query4();
+			System.out.println("Query 5");
+			Query5();
+			System.out.println("Query 6");
+			Query6(3110000);
+			System.out.println("Query 7");
+			Query_7("0x843f7174f4e023e3ef8392b288bfa31f4765e54f34a2d319ad661f54bed9c116");
+			System.out.println("Query 8");
+			Query_8("0xa4d6ff84f3fc783f3f7f71177958cff19dd7ffc4");
+			System.out.println("Query 9");
+			Query_9("0xa2d7a9432e98f91fffad9158f3183b24a744ab07");
+			System.out.println("Query 10");
+			Query_10("0x7b36d8be6f92818dc30f532ae2a67128b4b92b21");
+			System.out.println("Query 11");
+			Query11();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -79,26 +87,65 @@ public class Blockchain{
 
 	}
 	public static void Query1(){
+		long start_time = System.currentTimeMillis();
 		BlockbyTotalGas(TransactionHash,Blockno);
+		long end_time = System.currentTimeMillis();
+		long output = end_time - start_time;
+		System.out.println("Time to execute Query1: " + output+"ms");
+
+
 	}
 
-	public void Query2(){
+	public static void Query2(){
+		long start_time = System.currentTimeMillis();
 		BlockbyTransactionNo(TransactionHash,Blockno);	
+		long end_time = System.currentTimeMillis();
+		long output = end_time - start_time;
+		System.out.println("Time to execute Query2: " + output+"ms");
 	}
-	public void Query3(){
+	public static void Query3(){
+		long start_time = System.currentTimeMillis();
 		SortByGas(TransactionHash,gas_price);
+		long end_time = System.currentTimeMillis();
+		long output = end_time - start_time;
+		System.out.println("Time to execute Query3: " + output+"ms");
 	
 	}
-	public void Query4(){
+	public static void Query4(){
+		long start_time = System.currentTimeMillis();
 		TransactionsPerBlock(TransactionHash,gas_price,Blockno);
+		long end_time = System.currentTimeMillis();
+		long output = end_time - start_time;
+		System.out.println("Time to execute Query4: " + output+"ms");
 	}
-	public void Query5(){
+	public static void Query5(){
+		long start_time = System.currentTimeMillis();
 		sort_block();
+		long end_time = System.currentTimeMillis();
+		long output = end_time - start_time;
+		System.out.println("Time to execute Query5: " + output+"ms");
 	}
-	public void Query6(int block){
-			search_blockno(block);
+	public static void Query6(int block){
+		long start_time = System.currentTimeMillis();
+		search_blockno(block);
+		long end_time = System.currentTimeMillis();
+		long output = end_time - start_time;
+		System.out.println("Time to execute Query6: " + output+"ms");
 	
 	}		
+	public static void Query11(){
+		long start_time = System.currentTimeMillis();
+		String start_node = "0x2976924b350bcee8263f36d86cebd584d2363c1f";
+		System.out.println("Node               ------------------------>    Neighbours");
+		G.DisplayGraph();
+		System.out.println("BFS Output");
+		G.BFS(start_node);
+		System.out.println("DFS Output");
+		G.DFS("knknnnlklkmlkmlk");
+		long end_time = System.currentTimeMillis();
+		long output = end_time - start_time;
+		System.out.println("Time to execute Query11: " + output+"ms");
+	}
 	public static void TransactionsPerBlock(ArrayList<String> TransactionHash,
 			ArrayList<String>gas_price,ArrayList<String>Blockno){
 		int length = Blockno.size();
@@ -196,6 +243,7 @@ public class Blockchain{
 	
 	public static void Query_7(String transaction_hash){
 
+		long start_time = System.currentTimeMillis();
 		for(int i=0;i<TransactionHash.size();i++){
 			if(TransactionHash.get(i).equals(transaction_hash)){
 				String key = transaction_hash;
@@ -208,9 +256,13 @@ public class Blockchain{
 			}
 
 		}
+		long end_time = System.currentTimeMillis();
+		long output = end_time - start_time;
+		System.out.println("Time to execute Query7: " + output+"ms");
 	}
 	
 	public static void Query_8(String public_key){
+		long start_time = System.currentTimeMillis();
 		long total = 0;
 		System.out.println(
 			"block-hash  block-number from to contract-id gasprice txnhash index value");	
@@ -224,10 +276,14 @@ public class Blockchain{
                         }
                 }
 		System.out.println("The total transaction fee is "+total);
+		long end_time = System.currentTimeMillis();
+		long output = end_time - start_time;
+		System.out.println("Time to execute Query8: " + output+"ms");
         }
 
 
 	public static void Query_9(String public_key){
+		long start_time = System.currentTimeMillis();
 		long total = 0;
 		System.out.println(
 			"block-hash  block-number from to contract-id gasprice txnhash index value");	
@@ -241,8 +297,12 @@ public class Blockchain{
                         }
                 }
 		System.out.println("The total transaction fee is "+total);
+		long end_time = System.currentTimeMillis();
+		long output = end_time - start_time;
+		System.out.println("Time to execute Query9: " + output+"ms");
         }
 	public static void Query_10(String contract_id){
+		long start_time = System.currentTimeMillis();
 
 		Sorting S = new Sorting();	
 		for (String contract : contract_Block.keySet()){
@@ -269,6 +329,9 @@ public class Blockchain{
 				System.out.println();
 			}
 		}		
+		long end_time = System.currentTimeMillis();
+		long output = end_time - start_time;
+		System.out.println("Time to execute Query10: " + output+"ms");
 	}
 	public static void Display(ArrayList<String> currentblock){
 
