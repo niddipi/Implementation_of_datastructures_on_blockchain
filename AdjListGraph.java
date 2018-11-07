@@ -15,7 +15,7 @@ public class AdjListGraph extends Graph{
 		ArrayList<String> neighbours = new ArrayList<String>();
 		adjList.put(vertex,neighbours);
 	}	
-	
+
 	public void implementNewEdge(String u, String v){
 		if( u != null && v !=null){
 			boolean out = hasVertex(u);
@@ -23,7 +23,7 @@ public class AdjListGraph extends Graph{
 			if(out == false){
 				addnewVertex(u);
 			}
-			 out = hasVertex(u);
+			out = hasVertex(u);
 			if(out == false){
 				addnewVertex(v);
 			}
@@ -52,14 +52,14 @@ public class AdjListGraph extends Graph{
 			if(!adjListweights.get(key).equals(val1)){
 				adjListweights.replace(key,val,val1);
 			}
-			
+
 		}
-		
+
 		//System.out.println(d.toPlainString());
 		return;
 	}
 	public ArrayList<String> getNeighborsofVertex(String v){
-		
+
 		ArrayList<String> neighbours = new ArrayList<String>(adjList.get(v));
 		return neighbours;
 	}
@@ -70,7 +70,7 @@ public class AdjListGraph extends Graph{
 		return adjList.containsKey(Vertexname);
 	}
 	public  void DisplayGraph(){
-	
+
 		for (String key : adjList.keySet()) {
 			System.out.print(key+"--->");
 			for(String element : adjList.get(key)){
@@ -82,18 +82,18 @@ public class AdjListGraph extends Graph{
 
 	}
 	public void BFS(String vertex){
-		        Map<String,Integer> Level = new HashMap<>();
-			int level = 0;
-			ArrayList<String> current =   new ArrayList<String>();
-			current.add(vertex);
-			if(!Level.containsKey(vertex)){
-				Level.put(vertex,level);
-				level++;
-			}	
-			while(!current.isEmpty()){
-				ArrayList<String> next = new ArrayList<String>();
-				for (String key : current){
-					if(adjList.containsKey(key)){
+		Map<String,Integer> Level = new HashMap<>();
+		int level = 0;
+		ArrayList<String> current =   new ArrayList<String>();
+		current.add(vertex);
+		if(!Level.containsKey(vertex)){
+			Level.put(vertex,level);
+			level++;
+		}	
+		while(!current.isEmpty()){
+			ArrayList<String> next = new ArrayList<String>();
+			for (String key : current){
+				if(adjList.containsKey(key)){
 					for(String element:adjList.get(key)){
 						if(!Level.containsKey(element)){
 							Level.put(element,level);
@@ -102,22 +102,48 @@ public class AdjListGraph extends Graph{
 					}}
 
 
-				}
-				current = next;
-				level++;
 			}
-			for (String key : Level.keySet()) {
-				System.out.println(key+"--->"+Level.get(key));
+			current = next;
+			level++;
+		}
+		for (String key : Level.keySet()) {
+			System.out.println(key+"--->"+Level.get(key));
 
-			}
-				
+		}
+
 	}
 	private Map<String,String> Parents = new HashMap<>();	
-	public void DFS_V(String vertex,String RequiredGoal){
-		if(vertex.equals(RequiredGoal)){
-			return
+	private int time =0;
+	public void DFS_visit(String current_vertex,String RequiredGoal){
+		if(current_vertex.equals(RequiredGoal)){
+			return;
 		}
-		
+		int start_t = 0;
+		time = time + 1;
+		start_t = time;
+		if(adjList.containsKey(current_vertex)){
+
+			for (String element : adjList.get(current_vertex)){
+				if(!Parents.containsKey(element)){
+					Parents.put(element , current_vertex);
+					DFS_visit(element,RequiredGoal);
+				}
+			}
+		}
+		time = time + 1;
+		int End_t = time;
+		System.out.println(current_vertex+"-"+End_t);
+			
+		return;
 	}
-	
+	public void DFS(String RequiredGoal){
+		for (String current_vertex : adjList.keySet()){
+		   if(!Parents.containsKey(current_vertex)){
+			DFS_visit(current_vertex,RequiredGoal);
+		   }
+		}
+
+	}
+
+
 }

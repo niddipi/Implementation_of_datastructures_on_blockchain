@@ -48,5 +48,5 @@ public abstract class Graph{
 	//BFS - Breadth First Search
 	public abstract void BFS(String vertex);
 	//DFS - Depth First Search
-	public abstract void DFS(String vertex);
+	public abstract void DFS(String RequiredGoal);
 }

@@ -60,7 +60,7 @@ to a particular public-key (node) and their total transaction fee
 10. Identify the transaction id in a particular node (contract id) with the 
 largest (smallest) value of tokens
 
-11. Build a graph from the list of "from"s and "to"s and traversa in DFS and BFS
+11. Build a graph from the list of "from"s and "to"s and traverse in DFS and BFS
 
 * Note that multiple transactions with tokens transfers are to be added 
 into a single value each direction.
